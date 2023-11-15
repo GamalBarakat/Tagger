@@ -19,12 +19,22 @@ abstract class Styles{
   );
   static  TextStyle textStyleTitle16=TextStyle(
     fontSize: 16.0.sp,
-    fontWeight: FontWeight.w500,
+    fontWeight: FontWeight.w600,
     fontFamily: 'Roboto',
   );
   static  TextStyle textStyleTitle18=TextStyle(
     fontSize: 18.0.sp,
     fontWeight: FontWeight.w500,
+    fontFamily: 'Roboto',
+  );
+  static  TextStyle textStyleTitle14=TextStyle(
+    fontSize: 14.0.sp,
+    fontWeight: FontWeight.w600,
+    fontFamily: 'Roboto',
+  );
+  static  TextStyle textStyleTitle12=TextStyle(
+    fontSize: 12.0.sp,
+    fontWeight: FontWeight.w400,
     fontFamily: 'Roboto',
   );
 }

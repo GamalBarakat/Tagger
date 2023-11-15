@@ -11,7 +11,7 @@ import 'mm.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
-  await Firebase.initializeApp();
+
   DioHelper.init();
   await CacheHelper.init();
   runApp(const MyApp());

@@ -77,6 +77,18 @@ class _QRCodeCreateState extends State<QRCodeCreate> {
   }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
 class QrCodeScane extends StatefulWidget {
   @override
   _QrCodeScaneState createState() => _QrCodeScaneState();
