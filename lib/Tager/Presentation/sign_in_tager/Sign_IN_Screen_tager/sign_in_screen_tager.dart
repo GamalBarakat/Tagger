@@ -10,7 +10,8 @@ import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 import '../../../core/Navigation/navigation.dart';
 import '../../../core/const/Styles.dart';
-import '../../../core/const/chacheHelper.dart';
+import '../../../core/const/chachHelper.dart';
+
 import '../../../core/const/consts.dart';
 import '../../../core/widget/Button.dart';
 import '../../../core/widget/custom_text_form_field.dart';
@@ -75,6 +76,7 @@ class SignINScreenTager extends StatelessWidget {
           },
           builder: (context, state) {
             return Scaffold(
+              resizeToAvoidBottomInset: false,
                 body: SafeArea(
               child: Animate(
                 effects: [FadeEffect(), ScaleEffect()],
@@ -103,9 +105,10 @@ class SignINScreenTager extends StatelessWidget {
                             //     0xffBF953F
                             // ))
                             ,
+                            gradientDirection: GradientDirection.ttb,
                             gradientType: GradientType.values[0],
                             colors: const [
-                              Color(0xffEEBB49),
+                              Color(0xffEEBB49), Color(0xffEEBB49),
                               Color(0xffD9D9D9)
                             ],
                           ),
@@ -116,10 +119,10 @@ class SignINScreenTager extends StatelessWidget {
                             'For trading',
                             style: Styles.textStyleTitle24,
                             colors: const [
-                              Color(0xffEEBB49),
-                              Color(0xffD9D9D9)
+                              Color(0xffEEBB49), Color(0xffEEBB49),
+                              Color(0xffD9D9D9), Color(0xffD9D9D9)
                             ],
-                            gradientType: GradientType.linear,
+                            gradientDirection: GradientDirection.ttb,
                           ),
                         ),
 
@@ -147,35 +150,81 @@ class SignINScreenTager extends StatelessWidget {
                           style: Styles.textStyleTitle18,
                         ),
                         SizedBox(height: 10.h),
-                        CustomTextFormField(
-                          hintText: '************',
-                          controller: passwordController,
-                          textInputType: TextInputType.visiblePassword,
-                          validator: (value) {
-                            if (value!.isEmpty) {
+
+                        TextFormField(
+
+                          validator: ( value) {
+                            if(value!.isEmpty)
+                            {
                               return 'Password is to short';
-                            } else {
+                            }
+                            else
+                            {
                               return null;
                             }
                           },
-                          prefix: Icon(Icons.lock_outline,
-                              color: Color(0xffC19843)),
+
+                          keyboardType: TextInputType.emailAddress,
+                          controller:passwordController ,
+                          decoration: InputDecoration(
+                            focusColor: Color(0Xff2056AE),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12.0),
+
+                            ),
+
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12.0),
+                              borderSide: const BorderSide(
+
+                               color:  Color(0xffEEBB49),
+                                width: 2.0,
+                              ),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12.0),
+                              borderSide: const BorderSide(
+                                color: Color(0xffC19843),
+
+                                width: 2.0,
+                              ),
+                            ),
+                            suffixIcon:IconButton(onPressed: (){
+                              BlocProvider.of<LoginViewCubit>(context).changIconPassword();
+                            },
+                              icon: Icon(BlocProvider.of<LoginViewCubit>(context).subfix,color:Color(0xffEEBB49),size: 30.0),),
+
+                            prefixIcon:
+                            Icon(Icons.lock_outline,color:   Color(0xffEEBB49),size: 30.0),
+
+
+                          ),
+                          obscureText:BlocProvider.of<LoginViewCubit>(context).isPassword,
+
                         ),
                         SizedBox(height: 50),
 
-                    Button(
-                      textButton: 'Sing In',
-                      funcation: () {
-                        if (keyForm.currentState!.validate()) {
-                          BlocProvider.of<LoginViewCubit>(context).userLogin(
-                            email: emailController.text,
-                            password: passwordController.text,
-                          );
-                        }
-                      },
+                        ConditionalBuilder(
+                          condition: (state is !LoginViewStateLoading),
+                          builder: (context)=>Button(
+                            textButton: 'Sing In',
+                            funcation: () {
+                              if (keyForm.currentState!.validate()) {
+                                BlocProvider.of<LoginViewCubit>(context).userLogin(
+                                  email: emailController.text,
+                                  password: passwordController.text,
+                                );
+                              }
+                            },
 
 
-                    ),
+                          ),
+                           fallback:(context)=>Center(child: CircularProgressIndicator(
+
+                             color: Color(0xffEEBB49),
+                           )),
+                        )
+
 
                        
                       ],

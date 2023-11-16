@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 import '../const/Styles.dart';
@@ -11,12 +12,12 @@ class CustomTextFormField extends StatelessWidget {
   final FormFieldValidator<String>? validator;
   const CustomTextFormField({super.key,
 
-    this.controller,
-    this.textInputType = TextInputType.text,
-    this.hintText,
-    this.prefix,
+  this.controller,
+  this.textInputType = TextInputType.text,
+  this.hintText,
+  this.prefix,
 
-    this.validator,
+  this.validator,
   }) ;
 
   @override
@@ -26,11 +27,11 @@ class CustomTextFormField extends StatelessWidget {
         controller: controller,
         decoration:  InputDecoration(
           hintText: hintText,
-           hintStyle: Styles.textStyleTitle16,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12.0),
+          hintStyle: Styles.textStyleTitle16,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12.0),
 
-              ),
+          ),
 
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12.0),

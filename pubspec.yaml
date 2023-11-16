@@ -37,7 +37,7 @@ dependencies:
   barcode_widget: ^2.0.4
   shared_preferences: ^2.0.18
   intl:
-  dio: ^5.1.1
+  dio: ^5.3.3
   fluttertoast: ^8.2.1
   google_maps_flutter: ^2.5.0
   conditional_builder_null_safety: ^0.0.6

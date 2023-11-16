@@ -28,7 +28,7 @@ class Password extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (context) => NfcCubit(),
+        create: (context) => NfcCubit()..goToNfc(),
         child: BlocConsumer<NfcCubit, NfcState>(
           listener: (context, state) {
             if (state is CheckNfcSuccessState)
@@ -62,108 +62,119 @@ navigatofinsh(context,HomeScreen(), false);
           },
           builder: (context, state) {
             return Scaffold(
-              body: SafeArea(
-                child: Container(
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                        colors: [
-                          Color(0xffBF953F),
-                          Colors.black,
-                          Colors.black,
-                          Colors.black
-                        ],
-                        begin: AlignmentDirectional.topStart,
-                        end: AlignmentDirectional.centerStart),
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/img_constraction.png'),
-                      fit: BoxFit.cover,
-                    ),
+              appBar: AppBar(
+                backgroundColor:   Color(0xffBF953F).withOpacity(0.9),
+                leading: IconButton(onPressed: (){navigatofinsh(context, HomeScreen(), false);}, icon: Icon(Icons.home,size: 30),),
+                elevation: 0.0,
+                centerTitle: true,
+                title: GradientText(
+                  'MBAG',
+                  style: Styles.textStyleTitle50,
+                  gradientDirection: GradientDirection.ttb,
+                  colors:  [
+                    Color(0xffEEBB49),Colors.white.withOpacity(0.6),
+
+                  ],
+                ) ,
+              ),
+              body: Container(
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                      colors: [
+                        Color(0xffBF953F),
+                        Colors.black,
+                        Colors.black,
+                        Colors.black
+                      ],
+                      begin: AlignmentDirectional.topStart,
+                      end: AlignmentDirectional.centerStart),
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/img_constraction.png'),
+                    fit: BoxFit.cover,
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Column(
-                      children: [
-                        Column(
-                          children: [
-                            const SizedBox(
-                              height: 10.0,
-                            ),
-                            InkWell(
-                              onTap: () {
-                                print(nfcModel!.message);
-                              },
-                              child: Center(
-                                child: GradientText(
-                                  'MBAG',
-                                  style: Styles.textStyleTitle50,
-                                  gradientDirection: GradientDirection.ttb,
-                                  colors: const [
-                                    Color(0xffEEBB49),
-                                    Color(0xffD9D9D9)
-                                  ],
-                                ),
-                              ),
-                            ),
-                            SizedBox(height: 8.h),
-                            GradientText(
-                              'For trading',
-                              style: Styles.textStyleTitle24,
-                              colors: const [
-                                Color(0xffEEBB49),
-                                Color(0xffD9D9D9)
-                              ],
-                              gradientDirection: GradientDirection.ttb,
-                              // gradientType: GradientType.linear,
-                            ),
-                            const SizedBox(
-                              height: 10.0,
-                            )
-                          ],
-                        ),
-                        SizedBox(
-                          height: 50.h,
-                        ),
-                        Text(
-                          'Enter password',
-                          style: Styles.textStyleTitle20,
-                        ),
-                        SizedBox(
-                          height: 20.h,
-                        ),
-                        Form(
-                          key: keyForm,
-                          child: CustomTextFormField(
-                              hintText: 'Enter password',
-                              prefix: const Icon(Icons.password,
-                                  color: Color(0xffC19843)),
-                              textInputType: TextInputType.number,
-                              controller: passwordController,
-                              validator: (value) {
-                                if (value!.isEmpty) {
-                                  return ' password Is Required';
-                                } else {
-                                  return null;
-                                }
-                              }),
-                        ),
-                        const Spacer(
-                          flex: 1,
-                        ),
-                        Button(
-                            textButton: 'Confirm',
-                            funcation: () {
-                              if (keyForm.currentState!.validate()) {
-                                   print(passwordController.text);
-                                   print(nfcModel!.cardId);
-                                   print(nfcModel!.amount);
-                               BlocProvider.of<NfcCubit>(context).CheckNfc(password:passwordController.text , NfcCode: nfcModel!.cardId, amount: nfcModel!.amount);
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Column(
+                    children: [
+                      Column(
+                        children: [
+
+                          // InkWell(
+                          //   onTap: () {
+                          //     print(nfcModel!.message);
+                          //   },
+                          //   child: Center(
+                          //     child: GradientText(
+                          //       'MBAG',
+                          //       style: Styles.textStyleTitle50,
+                          //       gradientDirection: GradientDirection.ttb,
+                          //       colors: const [
+                          //         Color(0xffEEBB49),
+                          //         Color(0xffD9D9D9)
+                          //       ],
+                          //     ),
+                          //   ),
+                          // ),
+
+                          GradientText(
+                            'For trading',
+                            style: Styles.textStyleTitle24,
+                            colors: const [
+                              Color(0xffEEBB49),
+                              Color(0xffD9D9D9)
+                            ],
+                            gradientDirection: GradientDirection.ttb,
+                            // gradientType: GradientType.linear,
+                          ),
+                          const SizedBox(
+                            height: 10.0,
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 50.h,
+                      ),
+                      Text(
+                        'Enter password',
+                        style: Styles.textStyleTitle20,
+                      ),
+                      SizedBox(
+                        height: 20.h,
+                      ),
+                      Form(
+                        key: keyForm,
+                        child: CustomTextFormField(
+                            hintText: 'Enter password',
+                            prefix: const Icon(Icons.password,
+                                color: Color(0xffC19843)),
+                            textInputType: TextInputType.number,
+                            controller: passwordController,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return ' password Is Required';
+                              } else {
+                                return null;
                               }
                             }),
-                        SizedBox(
-                          height: 50.h,
-                        ),
-                      ],
-                    ),
+                      ),
+                      const Spacer(
+                        flex: 1,
+                      ),
+                      Button(
+                          textButton: 'Confirm',
+                          funcation: () {
+                            if (keyForm.currentState!.validate()) {
+                                 print(passwordController.text);
+                                 print(nfcModel!.cardId);
+                                 print(nfcModel!.amount);
+                             BlocProvider.of<NfcCubit>(context).CheckNfc(password:passwordController.text , NfcCode: nfcModel!.cardId, amount: nfcModel!.amount);
+                            }
+                          }),
+                      SizedBox(
+                        height: 50.h,
+                      ),
+                    ],
                   ),
                 ),
               ),

@@ -2,9 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:simple_gradient_text/simple_gradient_text.dart';
-
 import '../../../../core/Navigation/navigation.dart';
 import '../../../../core/const/Styles.dart';
 import '../../../../core/widget/Button.dart';
@@ -31,8 +29,8 @@ class HomeScreen extends StatelessWidget {
                 'MBAG',
                 style: Styles.textStyleTitle50,
                 gradientDirection: GradientDirection.ttb,
-                colors: const [
-                  Color(0xffEEBB49),Color(0xffEEBB49),
+                colors:  [
+                  Color(0xffEEBB49),Colors.white.withOpacity(0.6),
 
                 ],
               ) ,
@@ -51,6 +49,25 @@ class HomeScreen extends StatelessWidget {
                  padding: EdgeInsets.zero,
                  children: [
                    SizedBox(height: 40.h,),
+                   ListTile(
+
+
+
+                     title:Row(
+                       children: [
+                         Container(decoration:BoxDecoration(
+                           color:  Color(0xffEEBB49),
+                           borderRadius: BorderRadius.circular(5),
+                         ),child:Icon(Icons.home,color: Colors.black,size: 30) ,),
+                         SizedBox(width: 10.0,),
+
+                         Text('Home',style: Styles.textStyleTitle20,),
+                       ],
+                     ) ,
+                     onTap: () {
+                       navigatofinsh(context, HomeScreen(), false);
+                     },
+                   ),
                    ListTile(
                      title:Row(
                        children: [
@@ -283,7 +300,7 @@ class HomeScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Button(
-                        textButton: 'Add money',
+                        textButton: 'pay',
                         funcation: () {
                           navigato(context, VerifyScreen());
                         },

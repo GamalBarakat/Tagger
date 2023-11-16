@@ -1,15 +1,20 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'Tager/Presentation/splash_tager/screen/splash_screen_tager.dart';
 import 'Tager/core/const/blocObserver.dart';
-import 'Tager/core/const/chacheHelper.dart';
+import 'Tager/core/const/chachHelper.dart';
+
 import 'Tager/core/const/dioHelper.dart';
+import 'Tager/core/const/memoryy.dart';
 import 'mm.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  HttpOverrides.global = MyHttpOverrides();
   Bloc.observer = MyBlocObserver();
 
   DioHelper.init();

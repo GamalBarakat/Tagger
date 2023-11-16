@@ -8,6 +8,7 @@ import 'package:tager/Tager/Presentation/last_transaction/cubit/last_transaction
 
 import '../../../core/Navigation/navigation.dart';
 import '../../../core/const/Styles.dart';
+import '../../home_tager/presentation/home_screen/home_screen.dart';
 import '../../profile/screen/profile_screen.dart';
 import '../cubit/lastTransactionCubit.dart';
 class LastTransaction extends StatelessWidget {
@@ -23,88 +24,18 @@ class LastTransaction extends StatelessWidget {
             builder: (context,state)
             {
               return  Scaffold(
-                drawer: Drawer(
-                  width:MediaQuery.of(context).size.width*.7 ,
-                  backgroundColor: Colors.black,
 
-                  surfaceTintColor: Colors.purple,
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(color: Color(0xffEEBB49), width: 1),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: ListView(
-                    // Important: Remove any padding from the ListView.
-                    padding: EdgeInsets.zero,
-                    children: [
-                      SizedBox(height: 40.h,),
-                      ListTile(
-                        title:Row(
-                          children: [
-                            Container(decoration:BoxDecoration(
-                              color:  Color(0xffEEBB49),
-                              borderRadius: BorderRadius.circular(5),
-                            ),child:Icon(Icons.access_time,color: Colors.black,size: 30) ,),
-                            SizedBox(width: 10,),
-
-                            Text('Transaction ',style: Styles.textStyleTitle20,),
-                          ],
-                        ) ,
-                        onTap: () {
-                          navigato(context,LastTransaction() );
-                        },
-                      ),
-                      ListTile(
-
-
-
-                        title:Row(
-                          children: [
-                            Container(decoration:BoxDecoration(
-                              color:  Color(0xffEEBB49),
-                              borderRadius: BorderRadius.circular(5),
-                            ),child:Icon(Icons.account_box_rounded,color: Colors.black,size: 30) ,),
-                            SizedBox(width: 10.0,),
-
-                            Text('Account',style: Styles.textStyleTitle20,),
-                          ],
-                        ) ,
-                        onTap: () {
-                          navigato(context,ProfileScreen() );
-                        },
-                      ),
-                      ListTile(
-
-
-
-                        title:Row(
-                          children: [
-                            Container(decoration:BoxDecoration(
-                              color:  Color(0xffEEBB49),
-                              borderRadius: BorderRadius.circular(5),
-                            ),child:Icon(Icons.account_box_rounded,color: Colors.black,size: 30) ,),
-                            SizedBox(width: 10.0,),
-
-                            Text('Map',style: Styles.textStyleTitle20,),
-                          ],
-                        ) ,
-                        onTap: () {
-                          navigato(context,ProfileScreen() );
-                        },
-                      ),
-                    ],
-                  ),
-                ),
                 appBar: AppBar(
-                  leading:Text(''),
                   backgroundColor:   Color(0xffBF953F).withOpacity(0.9),
+                  leading: IconButton(onPressed: (){navigatofinsh(context, HomeScreen(), false);}, icon: Icon(Icons.home,size: 30),),
                   elevation: 0.0,
                   centerTitle: true,
                   title: GradientText(
                     'MBAG',
                     style: Styles.textStyleTitle50,
                     gradientDirection: GradientDirection.ttb,
-                    colors: const [
-                      Color(0xffEEBB49),Color(0xffEEBB49),
+                    colors:  [
+                      Color(0xffEEBB49),Colors.white.withOpacity(0.6),
 
                     ],
                   ) ,

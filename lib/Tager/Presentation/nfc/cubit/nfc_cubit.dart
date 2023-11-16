@@ -13,7 +13,7 @@ class NfcCubit extends Cubit<NfcState>{
   var nfc = '';
   var done = '';
   goToNfc() async {
-    emit(NfcLoadingState());
+    emit(GetNfcLoadingState());
     done = '';
 
     try {
@@ -25,7 +25,7 @@ class NfcCubit extends Cubit<NfcState>{
 
         var nfcId = tag.id;
         nfc = tag.id;
-        emit(NfcSuccessState());
+        emit(GetNfcSuccessState());
 
         print(tag.id);
       });
@@ -35,7 +35,7 @@ class NfcCubit extends Cubit<NfcState>{
 
       print("Error: $e");
 
-      emit(NfcErrorState());
+      emit(GetNfcErrorState());
     }
   }
   NfcModel?  nfcModel;

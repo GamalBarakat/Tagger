@@ -4,9 +4,9 @@ import '../model/nfc_model.dart';
 abstract class NfcState{}
 class NfcInitializState extends NfcState{}
 
-class NfcLoadingState extends  NfcState{}
-class NfcSuccessState extends  NfcState{}
-class NfcErrorState extends  NfcState{}
+class GetNfcLoadingState extends  NfcState{}
+class GetNfcSuccessState extends  NfcState{}
+class GetNfcErrorState extends  NfcState{}
 
 
 class AddNfcLoadingState extends  NfcState{}

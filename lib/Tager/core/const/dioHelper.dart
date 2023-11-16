@@ -15,7 +15,7 @@ class DioHelper{
 
 
 
-    receiveDataWhenStatusError: true,
+      receiveDataWhenStatusError: true,
 
     ));
   }
@@ -25,14 +25,15 @@ class DioHelper{
   {
 
     dio.options.headers={
-      'Content-Type':'application/json',
-      'lang':'ar',
+      'Accept': 'application/json',
+      'Accept-Language': 'ar',
+      'Authorization': 'Bearer ${uId}'
 
     };
 
-    // Replace with your actual access token
-    dio.options.headers["Authorization"] = "Bearer ${uId}";
-   return await dio.get(url);
+
+
+    return await dio.get(url);
   }
 
   static Future<Response>postData({required String url, Map<String,dynamic>? data, String?token })async
@@ -42,7 +43,7 @@ class DioHelper{
   };
   dio.options.headers["Authorization"] = "Bearer ${uId}";
 
-    return   dio.post(url,data: data);
+  return   dio.post(url,data: data);
   }
 
   static Future<Response>putData({required String url,Map<String,dynamic> ?data,String?token })async
