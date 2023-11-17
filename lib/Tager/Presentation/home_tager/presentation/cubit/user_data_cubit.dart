@@ -13,9 +13,9 @@ class userDataCubit extends Cubit<UserDataState>
     emit(UserDataLoadingState());
     DioHelper.getData(url:'trader').then((value){
       emit(UserDataSuccessState());
-      userDataModel=UserData.fromJson(value.data);
-      // print(value.data);
-      // print(userDataModel!.message);
+       userDataModel=UserData.fromJson(value.data);
+      print(userDataModel!.trader!.firstName);
+      print(userDataModel!.message);
       print(value.data);
     }).catchError((error){
 

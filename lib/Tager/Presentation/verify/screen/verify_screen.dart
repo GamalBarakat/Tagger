@@ -6,15 +6,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'package:tager/Tager/Presentation/QR%20Code/qr_screen/qr_screen.dart';
-import 'package:tager/Tager/Presentation/nfc/screen/nfc_screen.dart';
+
 import 'package:tager/Tager/core/Navigation/navigation.dart';
 import 'package:tager/Tager/core/widget/Button.dart';
 
 import '../../../core/const/Styles.dart';
 import '../../../core/widget/custom_text_form_field.dart';
 import '../../home_tager/presentation/home_screen/home_screen.dart';
-import '../../nfc/cubit/nfc_cubit.dart';
-import '../../nfc/cubit/nfc_state.dart';
+
 
 class VerifyScreen extends StatelessWidget {
   var verifyController = TextEditingController();
@@ -22,13 +21,7 @@ class VerifyScreen extends StatelessWidget {
   VerifyScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-        create: (context) => NfcCubit(),
-    child: BlocConsumer<NfcCubit, NfcState>
-      (
-      listener: (context,state){},
-      builder: (context,state){
-        return Scaffold(
+    return Scaffold(
           appBar: AppBar(
             backgroundColor:   Color(0xffBF953F).withOpacity(0.9),
             leading: IconButton(onPressed: (){navigatofinsh(context, HomeScreen(), false);}, icon: Icon(Icons.home,size: 30),),
@@ -114,9 +107,7 @@ class VerifyScreen extends StatelessWidget {
                     children: [
                       Button(textButton:'NFC card',funcation: (){
                         if (keyForm.currentState!.validate()){
-                          BlocProvider.of<NfcCubit>(context).goToNfc();
-                          print('gamallllDone');
-                          navigato(context, NfcScreen(amount:verifyController.text ,));
+
                         }
 
                       }),
@@ -142,9 +133,7 @@ class VerifyScreen extends StatelessWidget {
             ),
           ),
         );
-      },
-    )
-    );
+
 
   }
 }

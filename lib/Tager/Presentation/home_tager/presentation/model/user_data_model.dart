@@ -28,21 +28,27 @@
 
 import 'package:tager/Tager/Presentation/home_tager/presentation/model/user_data_detalise_model.dart';
 
+import 'addres.dart';
+
 class UserData {
   bool? status;
   String? message;
-  UserDataDetalise? user;
-  bool? address;
-  String? token;
+  UserDataDetalise? trader;
+  Address? address;
+  int? countNotifications;
+
 
 
   UserData.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
-    user = json['user'] != null ? UserDataDetalise.fromJson(json['user']) : null;
-    address = json['address'];
-    token = json['token'];
+    trader =
+    json['trader'] != null ? new UserDataDetalise.fromJson(json['trader']) : null;
+    address =
+    json['address'] != null ? new Address.fromJson(json['address']) : null;
+    countNotifications = json['count_notifications'];
   }
+
 
 
 }

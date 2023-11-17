@@ -47,24 +47,34 @@
 
 class UserDataDetalise {
   int? id;
+  Null? img;
   String? firstName;
   String? lastName;
   String? email;
-  int? countryId;
   String? countryName;
   String? phone;
+  String? iD;
+  String? balance;
+  int? todaySales;
+  int? discount;
+  String? activityName;
   String? lang;
 
 
 
   UserDataDetalise.fromJson(Map<String, dynamic> json) {
     id = json['id'];
+    img = json['img'];
     firstName = json['first_name'];
     lastName = json['last_name'];
     email = json['email'];
-    countryId = json['country_id'];
     countryName = json['country_name'];
     phone = json['phone'];
+    iD = json['ID'];
+    balance = json['balance'];
+    todaySales = json['today_sales'];
+    discount = json['discount'];
+    activityName = json['activity_name'];
     lang = json['lang'];
   }
 

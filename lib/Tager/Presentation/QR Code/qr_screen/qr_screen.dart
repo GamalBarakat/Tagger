@@ -5,11 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'package:tager/Tager/core/Navigation/navigation.dart';
-
 import '../../../core/const/Styles.dart';
-import '../../../core/widget/Button.dart';
 import '../../home_tager/presentation/home_screen/home_screen.dart';
-import '../../nfc/screen/password.dart';
+
 import '../cubit/qr_cubit.dart';
 import '../cubit/qr_state_cubit.dart';
 
@@ -37,7 +35,7 @@ class QrScreen extends StatelessWidget {
                 style: Styles.textStyleTitle50,
                 gradientDirection: GradientDirection.ttb,
                 colors:  [
-                  Color(0xffEEBB49),Colors.white.withOpacity(0.6),
+                  const Color(0xffEEBB49),Colors.white.withOpacity(0.6),
 
                 ],
               ) ,
@@ -64,29 +62,28 @@ class QrScreen extends StatelessWidget {
                   children: [
 
 SizedBox(height: 10,),
-                    GradientText(
-                      ' For trading',
-                      style: Styles.textStyleTitle24
+                    Center(
+                      child: GradientText(
+                        ' For trading',
+                        style: Styles.textStyleTitle24
 
-                      ,
-                      gradientType: GradientType.values[0],
-                      colors: const [
-                        Color(0xffEEBB49),
-                        Color(0xffD9D9D9)
-                      ],
+                        ,
+                        gradientType: GradientType.values[0],
+                        colors: const [
+                          Color(0xffEEBB49),
+                          Color(0xffD9D9D9)
+                        ],
+                      ),
                     ),
-                    SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
                     InkWell(onTap: (){print('${BlocProvider.of<QrCubit>(context).qrModel!.QR}');},child: Text('Ahmed mohamed',style: Styles.textStyleTitle24,)),
-                    SizedBox(height: 15,),
+                    const SizedBox(height: 15,),
                     Text('Please Scane your card',style: Styles.textStyleTitle18,),
                     SizedBox(height:MediaQuery.of(context).size.height*.10,),
                     SizedBox(width: 200.w,
                         height: 200.h,child: BarcodeWidget(data:'${BlocProvider.of<QrCubit>(context).qrModel!.QR}', barcode: Barcode.qrCode(),color:  Color(0xffEEBB49),height: 100,width: 100,)),
                     SizedBox(height:MediaQuery.of(context).size.height*.10,),
-                    Button(
-                      textButton: 'Next',
-                      funcation: (){},
-                    )
+
 
                   ],
                 ),
